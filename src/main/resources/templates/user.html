@@ -39,9 +39,9 @@
     <div class="row g-0">
         <div class="d-flex justify-content-between align-items-center">
             <p class="m-0">
-                <span class="fw-bold" th:text="${email}"></span>
+                <span class="fw-bold" th:text="${user.email}"></span>
                 with role:
-                <span th:text="${roles}"></span>
+                <span th:text="${user.roles.toString().replace('[', '').replace(']', '')}"></span>
             </p>
             <a href="/logout" class="text-decoration-none ms-3 me-3" style="color: gray;">logout</a>
         </div>
@@ -89,12 +89,12 @@
                                                     </thead>
                                                     <tbody>
                                                     <tr>
-                                                        <td th:text="${id}"></td>
-                                                        <td th:text="${firstName}"></td>
-                                                        <td th:text="${lastName}"></td>
-                                                        <td th:text="${age}"></td>
-                                                        <td th:text="${email}"></td>
-                                                        <td th:text="${roles}"></td>
+                                                        <td th:text="${user.id}"></td>
+                                                        <td th:text="${user.firstName}"></td>
+                                                        <td th:text="${user.lastName}"></td>
+                                                        <td th:text="${user.age}"></td>
+                                                        <td th:text="${user.email}"></td>
+                                                        <td th:text="${user.roles.toString().replace('[', '').replace(']', '')}"></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>

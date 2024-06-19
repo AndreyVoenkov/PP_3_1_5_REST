@@ -62,5 +62,4 @@ public class RegisrtationService {
         // Сохраняем пользователя в репозитории
         userRepository.save(user);
     }
-
 }

@@ -40,26 +40,16 @@ public class UserController {
     @GetMapping("/user")
     public String userPage(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User principal = (User) authentication.getPrincipal();
-        model.addAttribute("id", principal.getId());
-        model.addAttribute("firstName", principal.getFirstName());
-        model.addAttribute("lastName", principal.getLastName());
-        model.addAttribute("email", principal.getEmail());
-        model.addAttribute("age", principal.getAge());
-        model.addAttribute("roles", principal.getRoles().toString().replace("[", "").replace("]", ""));
+        User user = (User) authentication.getPrincipal();
+        model.addAttribute(user);
         return "user";
     }
 
     @GetMapping("/admin")
     public String getAllUsers(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User principal = (User) authentication.getPrincipal();
-        model.addAttribute("id", principal.getId());
-        model.addAttribute("firstName", principal.getFirstName());
-        model.addAttribute("lastName", principal.getLastName());
-        model.addAttribute("email", principal.getEmail());
-        model.addAttribute("age", principal.getAge());
-        model.addAttribute("roles", principal.getRoles().toString().replace("[", "").replace("]", ""));
+        User user = (User) authentication.getPrincipal();
+        model.addAttribute("admin", user);
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("user", new User()); // Добавляем пустой объект User
         model.addAttribute("allRoles", roleRepository.findAll()); // Добавляем список ролей в модель
