@@ -50,11 +50,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
                 // Разрешаем доступ к указанным URL для всех пользователей
-                .antMatchers("/", "/login", "/registration", "/error").permitAll()
+                .antMatchers("/login", "/api/user/**", "/error").permitAll()
                 // Доступ к URL с префиксом /admin только для пользователей с ролью ADMIN
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/api/admin/**").hasAuthority("ADMIN")
                 // Все остальные запросы требуют аутентификации
                 .anyRequest().authenticated()
                 .and()
@@ -69,13 +70,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().logoutUrl("/logout")
                 .logoutSuccessUrl("/").permitAll()
                 .and()
-                // Отключение CSRF защиты для упрощения конфигурации
-                .csrf().disable();
+                .httpBasic();
     }
 
     /**
      * Метод configure(AuthenticationManagerBuilder auth) настраивает аутентификацию,
-     * используя UserDetailsServiceImpl и PasswordEncoder.
+     * используя UserDetailsService и PasswordEncoder.
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

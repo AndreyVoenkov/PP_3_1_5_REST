@@ -10,7 +10,7 @@ public interface UserRepositoryCustom {
 
     List<User> getAllUsers();
 
-    User getUser(Long id);
+    User getUserById(Long id);
 
     void deleteUser(Long id);
 

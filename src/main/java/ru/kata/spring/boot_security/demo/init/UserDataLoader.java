@@ -51,8 +51,8 @@ public class UserDataLoader {
             User admin = new User();
             admin.setUsername("admin");
             admin.setPassword(passwordEncoder.encode("admin"));
-            admin.setFirstName("admin");
-            admin.setLastName("admin");
+            admin.setFirstName("FirstNameAdmin");
+            admin.setLastName("LastNameAdmin");
             admin.setAge(35);
             admin.setEmail("admin@mail.ru");
 
@@ -69,8 +69,8 @@ public class UserDataLoader {
             User user = new User();
             user.setUsername("user");
             user.setPassword(passwordEncoder.encode("user"));
-            user.setFirstName("user");
-            user.setLastName("user");
+            user.setFirstName("FirstNameUser");
+            user.setLastName("LastNameUser");
             user.setAge(30);
             user.setEmail("user@mail.ru");
 

@@ -24,7 +24,7 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
     }
 
     @Override
-    public User getUser(Long id) {
+    public User getUserById(Long id) {
         return entityManager.find(User.class, id);
     }
 

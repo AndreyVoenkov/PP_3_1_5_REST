@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:height="http://www.w3.org/1999/xhtml">
+
 <head>
     <title>User Information</title>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
-    <script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
+
     <style>
         /* Добавление пользовательского стиля для фона колонки */
         .content-column {
@@ -39,9 +39,9 @@
     <div class="row g-0">
         <div class="d-flex justify-content-between align-items-center">
             <p class="m-0">
-                <span class="fw-bold" th:text="${user.email}"></span>
+                <span class="fw-bold" id="navbarEmail"></span>
                 with role:
-                <span th:text="${user.roles.toString().replace('[', '').replace(']', '')}"></span>
+                <span id="navbarRoles"></span>
             </p>
             <a href="/logout" class="text-decoration-none ms-3 me-3" style="color: gray;">logout</a>
         </div>
@@ -88,13 +88,8 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <td th:text="${user.id}"></td>
-                                                        <td th:text="${user.firstName}"></td>
-                                                        <td th:text="${user.lastName}"></td>
-                                                        <td th:text="${user.age}"></td>
-                                                        <td th:text="${user.email}"></td>
-                                                        <td th:text="${user.roles.toString().replace('[', '').replace(']', '')}"></td>
+                                                    <tr id="tableUser">
+
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -118,6 +113,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="/user.js"></script>
 
 </body>
 </html>

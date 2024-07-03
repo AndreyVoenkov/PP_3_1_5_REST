@@ -10,7 +10,6 @@ import ru.kata.spring.boot_security.demo.repository.UserRepository;
 import ru.kata.spring.boot_security.demo.repository.UserRepositoryCustom;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -43,8 +42,8 @@ public class UserServiceImpl implements UserService {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @Override
-    public User getUser(Long id) {
-        return userRepositoryCustom.getUser(id);
+    public User getUserById(Long id) {
+        return userRepositoryCustom.getUserById(id);
     }
 
     @Transactional
@@ -54,13 +53,9 @@ public class UserServiceImpl implements UserService {
         userRepositoryCustom.deleteUser(id);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @Override
-    public Optional<User> findById(Long id) {
-        if (id == null) {
-            throw new IllegalArgumentException("id не должен быть null");
-        }
-        return userRepository.findById(id);
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }
 
