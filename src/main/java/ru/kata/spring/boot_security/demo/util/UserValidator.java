@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -12,11 +13,11 @@ import ru.kata.spring.boot_security.demo.service.UserDetailsServiceImpl;
 @Component
 public class UserValidator implements Validator {
 
-    private final UserDetailsServiceImpl userDetailsServiceImpl;
+    private final UserDetailsService userDetailsService;
 
     @Autowired
     public UserValidator(UserDetailsServiceImpl userDetailsServiceImpl) {
-        this.userDetailsServiceImpl = userDetailsServiceImpl;
+        this.userDetailsService = userDetailsServiceImpl;
     }
     // Метод supports проверяет, поддерживает ли данный валидатор валидацию объектов класса User
     @Override
@@ -29,7 +30,7 @@ public class UserValidator implements Validator {
         User user = (User) target;
         try {
             // Пытаемся загрузить пользователя по имени пользователя
-            userDetailsServiceImpl.loadUserByUsername(user.getUsername());
+            userDetailsService.loadUserByUsername(user.getUsername());
         } catch (UsernameNotFoundException ignor) {
             // Если пользователь не найден, ничего не делаем и выходим из метода
             return;

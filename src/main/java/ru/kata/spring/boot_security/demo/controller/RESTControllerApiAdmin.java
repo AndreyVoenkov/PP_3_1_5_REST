@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.kata.spring.boot_security.demo.exception_handling.NoSuchUserException;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.repository.RoleRepository;
+import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import javax.validation.Valid;
@@ -24,12 +24,12 @@ import java.util.List;
 public class RESTControllerApiAdmin {
 
     private final UserService userService;
-    private final RoleRepository roleRepository;
+    private final RoleService roleService;
 
     @Autowired
-    public RESTControllerApiAdmin(UserService userService, RoleRepository roleRepository) {
+    public RESTControllerApiAdmin(UserService userService, RoleService roleService) {
         this.userService = userService;
-        this.roleRepository = roleRepository;
+        this.roleService = roleService;
     }
 
     @GetMapping("/showAdmin")
@@ -43,8 +43,8 @@ public class RESTControllerApiAdmin {
     }
 
     @GetMapping("/roles")
-    public List<Role> roles() {
-        return roleRepository.findAll();
+    public List<Role> getAllRoles() {
+        return roleService.getAllRoles();
     }
 
     @GetMapping("/users/{id}")
